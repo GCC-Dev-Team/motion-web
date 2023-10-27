@@ -1,11 +1,7 @@
-import { Box, Title } from '@mantine/core'
+import { Title } from '@mantine/core'
 
 const HomePage = () => {
-  return (
-    <Box>
-      <Title>Hello World</Title>
-    </Box>
-  )
+  return <Title>HomePage</Title>
 }
 
 export default HomePage
