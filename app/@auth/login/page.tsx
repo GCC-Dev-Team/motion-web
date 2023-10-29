@@ -11,6 +11,7 @@ import {
   Text,
   Anchor
 } from '@mantine/core'
+import titleFont from '@/app/shared/titleFont'
 import useLoginForm from './useLoginForm'
 
 const LoginModal = () => {
@@ -23,7 +24,7 @@ const LoginModal = () => {
       title={
         <>
           欢迎使用{' '}
-          <Text inherit span c="yellow">
+          <Text inherit span className={titleFont.className}>
             Motion
           </Text>
         </>

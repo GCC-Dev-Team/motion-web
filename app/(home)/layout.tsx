@@ -7,7 +7,7 @@ const HomePageLayout = ({ children }: PropsWithChildren<{}>) => {
   return (
     <Container size="xl">
       <AppShell
-        header={{ height: 56 }}
+        header={{ height: 64 }}
         navbar={{ width: 200, breakpoint: 0 }}
         padding="md">
         <AppHeader />
