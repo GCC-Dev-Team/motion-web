@@ -1,11 +1,20 @@
-import { PropsWithChildren } from 'react'
-import { AppShell, AppShellMain } from '@mantine/core'
+import { type PropsWithChildren } from 'react'
+import { AppShell, AppShellMain, Container } from '@mantine/core'
+import AppHeader from './components/AppHeader'
+import AppNavbar from './components/AppNavbar'
 
 const HomePageLayout = ({ children }: PropsWithChildren<{}>) => {
   return (
-    <AppShell>
-      <AppShellMain>{children}</AppShellMain>
-    </AppShell>
+    <Container size="xl">
+      <AppShell
+        header={{ height: 56 }}
+        navbar={{ width: 200, breakpoint: 0 }}
+        padding="md">
+        <AppHeader />
+        <AppNavbar />
+        <AppShellMain>{children}</AppShellMain>
+      </AppShell>
+    </Container>
   )
 }
 

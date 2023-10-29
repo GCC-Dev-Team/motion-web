@@ -1,10 +1,5 @@
 import httpClient from '../httpClient'
-import {
-  type RegisterData,
-  type LoginDTO,
-  type LoginData,
-  type RegisterDTO
-} from './type'
+import { type LoginDTO, type LoginData, type RegisterDTO } from './type'
 
 const ACCOUNT_API_PATH = 'account'
 
@@ -17,9 +12,10 @@ const accountAPI = {
   }),
   register: () => ({
     mutationFn: (params: RegisterDTO) =>
-      httpClient
-        .post(ACCOUNT_API_PATH + '/register', { json: params })
-        .json<RegisterData>()
+      httpClient.post(ACCOUNT_API_PATH + '/register', { json: params }).json()
+  }),
+  logout: () => ({
+    mutationFn: () => httpClient.post(ACCOUNT_API_PATH + '/logout').json()
   })
 }
 
