@@ -14,7 +14,7 @@ const AppNavbar = () => {
   })
 
   return (
-    <AppShellNavbar py="md">
+    <AppShellNavbar py="md" className="[--mantine-color-body:transparent]">
       <AppShellSection grow></AppShellSection>
       <AppShellSection>
         <Button

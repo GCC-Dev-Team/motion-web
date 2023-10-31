@@ -1,13 +1,7 @@
-import Link from 'next/link'
-import { Group } from '@mantine/core'
+import VideoList from '@/app/components/video/VideoList'
 
 const HomePage = () => {
-  return (
-    <Group>
-      <Link href="/login">Login</Link>
-      <Link href="/register">Register</Link>
-    </Group>
-  )
+  return <VideoList />
 }
 
 export default HomePage
