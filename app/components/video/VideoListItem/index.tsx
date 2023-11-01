@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import {
   Group,
   Stack,
+  Image,
   Title,
   Text,
   Box,
@@ -33,9 +33,8 @@ const VideoListItem = ({ video, box }: VideoListItemProps) => {
       <Card className="h-full transition-transform ease-linear group-hover:scale-95">
         <CardSection className="transition-transform ease-linear group-hover:scale-110">
           <Image
-            priority
-            width={box.width}
-            height={box.height}
+            w={box.width}
+            h={box.height}
             src={video.cover.videoCoverUrl}
             alt={video.description}
           />

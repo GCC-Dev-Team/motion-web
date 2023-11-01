@@ -19,11 +19,15 @@ const accountAPI = {
           .json<GetVideoListData>()
       },
       initialPageParam: 1,
-      getPreviousPageParam: () => {
-        return 0
+      getPreviousPageParam: firstPage => {
+        if (firstPage.currentPage > 0) {
+          return firstPage.currentPage - 1
+        }
       },
-      getNextPageParam: () => {
-        return 0
+      getNextPageParam: data => {
+        if (data.currentPage < data.totalPage) {
+          return data.currentPage + 1
+        }
       }
     })
 }
