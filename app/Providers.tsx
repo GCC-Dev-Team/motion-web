@@ -4,6 +4,7 @@ import { type PropsWithChildren } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
+import { ModalsProvider } from '@mantine/modals'
 import queryClient from '@/app/configs/queryClient'
 import mantineTheme from '@/app/configs/mantineTheme'
 import '@/app/configs/dayjsConfig'
@@ -13,7 +14,7 @@ const Providers = ({ children }: PropsWithChildren<{}>) => {
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={mantineTheme}>
         <Notifications position="top-center" />
-        {children}
+        <ModalsProvider>{children}</ModalsProvider>
       </MantineProvider>
     </QueryClientProvider>
   )

@@ -1,7 +1,7 @@
 import ky from 'ky'
 import env from '@/app/shared/env'
 import notify from '@/app/shared/notify'
-import useAuthStore from '@/app/@auth/stores/useAuthStore'
+import useAuthStore from '@/app/stores/useAuthStore'
 
 interface APIResponse {
   code: number

@@ -1,3 +1,5 @@
+'use client'
+
 import VideoList from '@/app/components/video/VideoList'
 
 const HomePage = () => {

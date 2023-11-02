@@ -14,6 +14,9 @@ dependencies:
   '@mantine/hooks':
     specifier: ^7.1.7
     version: 7.1.7(react@18.2.0)
+  '@mantine/modals':
+    specifier: ^7.1.7
+    version: 7.1.7(@mantine/core@7.1.7)(@mantine/hooks@7.1.7)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/notifications':
     specifier: ^7.1.7
     version: 7.1.7(@mantine/core@7.1.7)(@mantine/hooks@7.1.7)(react-dom@18.2.0)(react@18.2.0)
@@ -48,8 +51,8 @@ dependencies:
     specifier: ^3.22.4
     version: 3.22.4
   zustand:
-    specifier: ^4.4.5
-    version: 4.4.5(@types/react@18.2.33)(react@18.2.0)
+    specifier: ^4.4.4
+    version: 4.4.4(@types/react@18.2.33)(react@18.2.0)
 
 devDependencies:
   '@types/js-cookie':
@@ -280,6 +283,20 @@ packages:
       react: ^18.2.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /@mantine/modals@7.1.7(@mantine/core@7.1.7)(@mantine/hooks@7.1.7)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-P0aBB08Zhg2OdzQ/knaE4Hr3k5MF8ixqBe56syrOYSM8sPP0wnrS1U62A7Kgc0sb+9XbOpexJ/xMXmkRdCn4MA==}
+    peerDependencies:
+      '@mantine/core': 7.1.7
+      '@mantine/hooks': 7.1.7
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@mantine/core': 7.1.7(@mantine/hooks@7.1.7)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.1.7(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@mantine/notifications@7.1.7(@mantine/core@7.1.7)(@mantine/hooks@7.1.7)(react-dom@18.2.0)(react@18.2.0):
@@ -3153,8 +3170,8 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  /zustand@4.4.5(@types/react@18.2.33)(react@18.2.0):
-    resolution: {integrity: sha512-jgIrBBLKncQW74PA2Lclct3gwD4aPughwGE4FqlXrv3rDqQox7JCn8rwUiFK6ygJcbBAvfTf8fF+ICg7HLD2FQ==}
+  /zustand@4.4.4(@types/react@18.2.33)(react@18.2.0):
+    resolution: {integrity: sha512-5UTUIAiHMNf5+mFp7/AnzJXS7+XxktULFN0+D1sCiZWyX7ZG+AQpqs2qpYrynRij4QvoDdCD+U+bmg/cG3Ucxw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'
