@@ -3,7 +3,7 @@
 import { AppShellNavbar, AppShellSection, Button } from '@mantine/core'
 import { useMutation } from '@tanstack/react-query'
 import accountAPI from '@/app/apis/accountAPI'
-import useAuthStore from '@/app/@auth/stores/useAuthStore'
+import useAuthStore from '@/app/stores/useAuthStore'
 
 const AppNavbar = () => {
   const logoutMutation = useMutation({

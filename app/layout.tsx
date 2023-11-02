@@ -1,4 +1,4 @@
-import { type PropsWithChildren, type ReactNode } from 'react'
+import { type PropsWithChildren } from 'react'
 import { type Metadata } from 'next'
 import {
   ColorSchemeScript,
@@ -11,8 +11,6 @@ import Providers from '@/app/Providers'
 import AppHeader from '@/app/components/layout/AppHeader'
 import AppNavbar from '@/app/components/layout/AppNavbar'
 
-import '@mantine/core/styles.css'
-import '@mantine/notifications/styles.css'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -20,11 +18,7 @@ export const metadata: Metadata = {
   description: '短视频 App'
 }
 
-interface RootLayoutProps {
-  auth: ReactNode
-}
-
-const RootLayout = ({ children, auth }: PropsWithChildren<RootLayoutProps>) => {
+const RootLayout = ({ children }: PropsWithChildren<{}>) => {
   return (
     <html lang="en">
       <head>
@@ -32,7 +26,6 @@ const RootLayout = ({ children, auth }: PropsWithChildren<RootLayoutProps>) => {
       </head>
       <body>
         <Providers>
-          {auth}
           <Box className="bg-slate-50">
             <Container size="xl">
               <AppShell

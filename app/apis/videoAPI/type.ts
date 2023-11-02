@@ -30,3 +30,5 @@ export interface GetVideoListData {
   currentPage: number
   list: VideoData[]
 }
+
+export type GetVideoDetailData = VideoData

@@ -23,7 +23,7 @@ interface VideoListItemProps {
 const VideoListItem = ({ video, box }: VideoListItemProps) => {
   return (
     <Link
-      className="group"
+      className="group absolute"
       href={`/video/${video.videoId}`}
       style={{
         width: box.width,

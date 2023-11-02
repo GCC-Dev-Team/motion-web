@@ -1,70 +1,45 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect } from 'react'
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
-import { Box, ScrollArea, type ScrollAreaProps } from '@mantine/core'
-import { useElementSize } from '@mantine/hooks'
-import createJustifiedLayout from 'justified-layout'
+import { Box, ScrollArea, Stack } from '@mantine/core'
+import { useElementSize, useIntersection } from '@mantine/hooks'
 import videoAPI from '@/app/apis/videoAPI'
-import { type VideoData } from '@/app/apis/videoAPI/type'
-import VideoListItem from '../VideoListItem'
+import VideoListSection from '../VideoListSection'
 
 const VideoList = () => {
   const {
-    data: videos,
+    data: { pages },
     fetchNextPage,
     isFetching
   } = useSuspenseInfiniteQuery({
-    ...videoAPI.getVideoList(),
-    select: data => {
-      let videoList: VideoData[] = []
-
-      data.pages.forEach(({ list }) => {
-        videoList = videoList.concat(list)
-      })
-
-      return videoList
-    }
+    ...videoAPI.getVideoList()
   })
 
   const { ref: sizeRef, width } = useElementSize()
 
-  const viewportRef = useRef<HTMLDivElement>(null!)
+  const { ref: intersectionRef, entry } = useIntersection()
 
-  const handleScrollPositionChange: ScrollAreaProps['onScrollPositionChange'] =
-    ({ y }) => {
-      if (
-        viewportRef.current.scrollHeight -
-          (viewportRef.current.clientHeight + y) <
-          300 &&
-        !isFetching
-      ) {
-        fetchNextPage()
-      }
+  useEffect(() => {
+    if (entry?.isIntersecting && !isFetching) {
+      fetchNextPage()
     }
-
-  const layoutResult = createJustifiedLayout(
-    videos.map(({ cover }) => cover),
-    { containerWidth: width, containerPadding: 0 }
-  )
+  }, [entry, isFetching, fetchNextPage])
 
   return (
-    <ScrollArea
-      className="h-full"
-      viewportRef={viewportRef}
-      onScrollPositionChange={handleScrollPositionChange}>
-      <Box className="grid h-full [&>*]:[grid-area:1/1/2/2]" ref={sizeRef}>
+    <ScrollArea className="h-full" viewportRef={sizeRef}>
+      <Stack gap="xs">
         {width
-          ? videos.map((video, index) => (
-              <VideoListItem
-                key={video.videoId}
-                video={video}
-                box={layoutResult.boxes[index]}
+          ? pages.map(page => (
+              <VideoListSection
+                key={page.currentPage}
+                videos={page.list}
+                width={width}
               />
             ))
           : null}
-      </Box>
-      <div />
+      </Stack>
+      <Box className="h-px" ref={intersectionRef} />
     </ScrollArea>
   )
 }

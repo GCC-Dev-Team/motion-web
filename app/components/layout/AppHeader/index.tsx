@@ -6,7 +6,7 @@ const AppHeader = () => {
   return (
     <AppShellHeader py="xs" className="[--mantine-color-body:transparent]">
       <Link href="/">
-        <Title className={titleFont.className}>Motion</Title>
+        <Title style={titleFont.style}>Motion</Title>
       </Link>
     </AppShellHeader>
   )

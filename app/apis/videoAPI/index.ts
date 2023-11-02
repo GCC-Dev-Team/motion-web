@@ -1,6 +1,6 @@
-import { infiniteQueryOptions } from '@tanstack/react-query'
+import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query'
 import httpClient from '../httpClient'
-import { GetVideoListData } from './type'
+import { type GetVideoListData, type GetVideoDetailData } from './type'
 
 const VIDEO_API_PATH = 'video'
 
@@ -29,6 +29,14 @@ const accountAPI = {
           return data.currentPage + 1
         }
       }
+    }),
+  getVideoDetail: (videoId: string) =>
+    queryOptions({
+      queryKey: [VIDEO_API_PATH, videoId],
+      queryFn: () =>
+        httpClient
+          .get(VIDEO_API_PATH + '/one', { searchParams: { videoId } })
+          .json<GetVideoDetailData>()
     })
 }
 

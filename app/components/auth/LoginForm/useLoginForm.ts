@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { z } from 'zod'
 import accountAPI from '@/app/apis/accountAPI'
 import regex from '@/app/shared/regex'
-import useAuthStore from '../stores/useAuthStore'
+import useAuthStore from '@/app/stores/useAuthStore'
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: '请输入有效的邮箱地址' }),
