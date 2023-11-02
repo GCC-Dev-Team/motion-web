@@ -9,6 +9,9 @@ import queryClient from '@/app/configs/queryClient'
 import mantineTheme from '@/app/configs/mantineTheme'
 import '@/app/configs/dayjsConfig'
 
+import '@mantine/core/styles.css'
+import '@mantine/notifications/styles.css'
+
 const Providers = ({ children }: PropsWithChildren<{}>) => {
   return (
     <QueryClientProvider client={queryClient}>

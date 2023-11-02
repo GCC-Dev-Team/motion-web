@@ -11,8 +11,6 @@ import Providers from '@/app/Providers'
 import AppHeader from '@/app/components/layout/AppHeader'
 import AppNavbar from '@/app/components/layout/AppNavbar'
 
-import '@mantine/core/styles.css'
-import '@mantine/notifications/styles.css'
 import './globals.css'
 
 export const metadata: Metadata = {
