@@ -1,10 +1,11 @@
-import { useRouter } from 'next/navigation'
 import { useForm, zodResolver } from '@mantine/form'
+import { modals } from '@mantine/modals'
 import { useMutation } from '@tanstack/react-query'
 import { z } from 'zod'
 import accountAPI from '@/app/apis/accountAPI'
 import regex from '@/app/shared/regex'
 import notify from '@/app/shared/notify'
+import openLoginModal from '../LoginForm/openLoginModal'
 
 const registerFormSchema = z.object({
   userName: z.string().regex(regex.userName, {
@@ -29,14 +30,14 @@ const useRegisterForm = () => {
     }
   })
 
-  const router = useRouter()
-
   const { isPending, mutate: register } = useMutation({
     ...accountAPI.register(),
     onSuccess: () => {
       notify.success({ message: '注册成功' })
 
-      router.replace('/login')
+      modals.closeAll()
+
+      openLoginModal()
     }
   })
 

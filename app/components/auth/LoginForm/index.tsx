@@ -8,8 +8,8 @@ import {
   Text,
   Center
 } from '@mantine/core'
-import useLoginForm from './useLoginForm'
 import { modals } from '@mantine/modals'
+import useLoginForm from './useLoginForm'
 import openRegisterModal from '../RegisterForm/openRegisterModal'
 
 const LoginForm = () => {

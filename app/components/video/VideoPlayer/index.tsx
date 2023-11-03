@@ -7,6 +7,7 @@ import {
 } from '@vidstack/react/player/layouts/default'
 import videoAPI from '@/app/apis/videoAPI'
 import usePlaceholderImageUrl from './usePlaceholderImageUrl'
+import VideoCommentControl from '../controls/VideoCommentControl'
 
 import '@vidstack/react/player/styles/default/theme.css'
 import '@vidstack/react/player/styles/default/layouts/video.css'
@@ -17,9 +18,7 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
-  const { data: video } = useSuspenseQuery({
-    ...videoAPI.getVideoDetail(videoId)
-  })
+  const { data: video } = useSuspenseQuery(videoAPI.getVideoDetail(videoId))
 
   const placeholderUrl = usePlaceholderImageUrl({
     imageUrl: video.cover.videoCoverUrl,
@@ -36,7 +35,11 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
           aspectRatio={`${video.cover.width}/${video.cover.height}`}
           autoplay>
           <MediaProvider />
-          <DefaultVideoLayout icons={defaultLayoutIcons} />
+          <DefaultVideoLayout icons={defaultLayoutIcons}>
+            <Box className="absolute bottom-1/3 right-6">
+              <VideoCommentControl />
+            </Box>
+          </DefaultVideoLayout>
         </MediaPlayer>
       </Center>
     </Box>

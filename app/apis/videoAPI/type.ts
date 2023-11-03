@@ -23,6 +23,17 @@ export interface VideoData {
   updateAt: null
 }
 
+export interface VideoCommentData {
+  id: string
+  content: string
+  userId: string
+  userName: string
+  likeCount: number
+  avatar: string | null
+  createAt: string
+  updateAt: string
+  liked: boolean
+}
 export interface GetVideoListData {
   total: number
   pageSize: number
@@ -32,3 +43,9 @@ export interface GetVideoListData {
 }
 
 export type GetVideoDetailData = VideoData
+
+export type GetVideoCommentListData = VideoCommentData[]
+
+export interface PostVideoCommentDTO {
+  content: string
+}

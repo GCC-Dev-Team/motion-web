@@ -1,10 +1,15 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query'
 import httpClient from '../httpClient'
-import { type GetVideoListData, type GetVideoDetailData } from './type'
+import {
+  type GetVideoListData,
+  type GetVideoDetailData,
+  type GetVideoCommentListData,
+  type PostVideoCommentDTO
+} from './type'
 
 const VIDEO_API_PATH = 'video'
 
-const accountAPI = {
+const videoAPI = {
   getVideoList: (pageSize: number = 20) =>
     infiniteQueryOptions({
       queryKey: [VIDEO_API_PATH],
@@ -37,7 +42,25 @@ const accountAPI = {
         httpClient
           .get(VIDEO_API_PATH + '/one', { searchParams: { videoId } })
           .json<GetVideoDetailData>()
-    })
+    }),
+  getVideoCommentList: (videoId: string) =>
+    queryOptions({
+      queryKey: [VIDEO_API_PATH, 'comment', videoId],
+      queryFn: () =>
+        httpClient
+          .get(VIDEO_API_PATH + `/${videoId}/comment/list`)
+          .json<GetVideoCommentListData>()
+    }),
+  likeVideoComment: () => ({
+    mutationFn: (commentId: string) =>
+      httpClient.post(VIDEO_API_PATH + `/comment/${commentId}/like`).json()
+  }),
+  postVideoComment: (videoId: string) => ({
+    mutationFn: (params: PostVideoCommentDTO) =>
+      httpClient
+        .post(VIDEO_API_PATH + `/${videoId}/comment`, { json: params })
+        .json()
+  })
 }
 
-export default accountAPI
+export default videoAPI

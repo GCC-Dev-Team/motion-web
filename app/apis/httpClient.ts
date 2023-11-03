@@ -2,6 +2,7 @@ import ky from 'ky'
 import env from '@/app/shared/env'
 import notify from '@/app/shared/notify'
 import useAuthStore from '@/app/stores/useAuthStore'
+import openLoginModal from '@/app/components/auth/LoginForm/openLoginModal'
 
 interface APIResponse {
   code: number
@@ -31,6 +32,11 @@ const httpClient = ky.create({
           error.name = response.status.toString()
 
           notify.error({ message: json.msg })
+
+          if (json.code === 401) {
+            useAuthStore.setState({}, true)
+            openLoginModal()
+          }
 
           throw error
         }

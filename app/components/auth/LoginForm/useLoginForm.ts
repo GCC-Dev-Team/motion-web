@@ -1,5 +1,5 @@
-import { useRouter } from 'next/navigation'
 import { useForm, zodResolver } from '@mantine/form'
+import { modals } from '@mantine/modals'
 import { useMutation } from '@tanstack/react-query'
 import { z } from 'zod'
 import accountAPI from '@/app/apis/accountAPI'
@@ -25,14 +25,12 @@ const useLoginForm = () => {
     }
   })
 
-  const router = useRouter()
-
   const { isPending, mutate: login } = useMutation({
     ...accountAPI.login(),
     onSuccess: data => {
       useAuthStore.setState({ token: data.token })
 
-      router.back()
+      modals.closeAll()
     }
   })
 
