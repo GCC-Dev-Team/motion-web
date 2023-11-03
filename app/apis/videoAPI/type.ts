@@ -44,7 +44,10 @@ export interface GetVideoListData {
 
 export type GetVideoDetailData = VideoData
 
-export type GetVideoCommentListData = VideoCommentData[]
+export interface GetVideoCommentListData {
+  commentCount: number
+  list: VideoCommentData[]
+}
 
 export interface PostVideoCommentDTO {
   content: string

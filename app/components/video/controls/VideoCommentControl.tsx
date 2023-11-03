@@ -20,6 +20,10 @@ const VideoCommentControl = () => {
 
   const { data: video } = useSuspenseQuery(videoAPI.getVideoDetail(videoId))
 
+  const {
+    data: { commentCount, list: commentList }
+  } = useSuspenseQuery(videoAPI.getVideoCommentList(videoId))
+
   const [opened, { open, close }] = useDisclosure(false)
 
   return (
@@ -29,7 +33,7 @@ const VideoCommentControl = () => {
           <Group gap="xs">
             评论
             <Text span c="gray">
-              {video.videoCommentCount}
+              {commentCount}
             </Text>
           </Group>
         }
@@ -41,7 +45,7 @@ const VideoCommentControl = () => {
         opened={opened}
         onClose={close}>
         <Stack className="h-full" gap={0}>
-          <VideoCommentList videoId={video.videoId} />
+          <VideoCommentList videoId={video.videoId} list={commentList} />
           <Divider mb="md" />
           <VideoCommentForm videoId={video.videoId} />
         </Stack>

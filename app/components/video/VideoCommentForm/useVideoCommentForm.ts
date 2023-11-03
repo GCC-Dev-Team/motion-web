@@ -32,7 +32,6 @@ const useVideoCommentForm = ({ videoId }: UseVideoCommentFormOptions) => {
       notify.success({ message: '评论发布成功' })
       form.reset()
 
-      queryClient.invalidateQueries(videoAPI.getVideoDetail(videoId))
       queryClient.invalidateQueries(videoAPI.getVideoCommentList(videoId))
     }
   })
