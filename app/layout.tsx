@@ -9,7 +9,6 @@ import {
 } from '@mantine/core'
 import Providers from '@/app/Providers'
 import AppHeader from '@/app/components/layout/AppHeader'
-import AppNavbar from '@/app/components/layout/AppNavbar'
 
 import './globals.css'
 
@@ -28,13 +27,8 @@ const RootLayout = ({ children }: PropsWithChildren<{}>) => {
         <Providers>
           <Box className="bg-slate-50">
             <Container size="xl">
-              <AppShell
-                header={{ height: 64 }}
-                navbar={{ width: 200, breakpoint: 0 }}
-                withBorder={false}
-                padding="md">
+              <AppShell header={{ height: 64 }} withBorder={false} padding="md">
                 <AppHeader />
-                <AppNavbar />
                 <AppShellMain className="h-[100dvh] pb-0">
                   {children}
                 </AppShellMain>

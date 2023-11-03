@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { BackgroundImage, Center } from '@mantine/core'
+import { BackgroundImage, Box, Center } from '@mantine/core'
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
 import {
   defaultLayoutIcons,
@@ -10,6 +10,7 @@ import usePlaceholderImageUrl from './usePlaceholderImageUrl'
 
 import '@vidstack/react/player/styles/default/theme.css'
 import '@vidstack/react/player/styles/default/layouts/video.css'
+import './media-player.css'
 
 interface VideoPlayerProps {
   videoId: string
@@ -26,23 +27,19 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   })
 
   return (
-    <BackgroundImage src={placeholderUrl} radius="md" className="h-full">
+    <Box className="h-full">
+      <BackgroundImage src={placeholderUrl} className="fixed inset-0" />
       <Center className="h-full">
         <MediaPlayer
           title={video.description}
           src={video.url}
-          autoplay
-          style={{
-            width: 'auto',
-            maxHeight: '100%',
-            maxWidth: '100%'
-          }}
-          aspectRatio={`${video.cover.width}/${video.cover.height}`}>
+          aspectRatio={`${video.cover.width}/${video.cover.height}`}
+          autoplay>
           <MediaProvider />
           <DefaultVideoLayout icons={defaultLayoutIcons} />
         </MediaPlayer>
       </Center>
-    </BackgroundImage>
+    </Box>
   )
 }
 
