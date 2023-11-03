@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 import {
   Group,
@@ -12,6 +13,7 @@ import {
   Button
 } from '@mantine/core'
 import { IconHeart, IconMessages } from '@tabler/icons-react'
+import { useDisclosure, useHover, useTimeout } from '@mantine/hooks'
 import dayjs from 'dayjs'
 import { type VideoData } from '@/app/apis/videoAPI/type'
 
@@ -21,8 +23,24 @@ interface VideoListItemProps {
 }
 
 const VideoListItem = ({ video, box }: VideoListItemProps) => {
+  const { hovered, ref } = useHover<HTMLAnchorElement>()
+
+  const [opened, handlers] = useDisclosure(false)
+
+  const { start, clear } = useTimeout(() => handlers.open(), 1000)
+
+  useEffect(() => {
+    if (hovered) {
+      start()
+    } else {
+      clear()
+      handlers.close()
+    }
+  }, [hovered, start, clear, handlers])
+
   return (
     <Link
+      ref={ref}
       className="group absolute"
       href={`/video/${video.videoId}`}
       style={{
@@ -31,13 +49,17 @@ const VideoListItem = ({ video, box }: VideoListItemProps) => {
         transform: `translate(${box.left}px, ${box.top}px)`
       }}>
       <Card className="h-full transition-transform ease-linear group-hover:scale-95">
-        <CardSection className="transition-transform ease-linear group-hover:scale-110">
-          <Image
-            w={box.width}
-            h={box.height}
-            src={video.cover.videoCoverUrl}
-            alt={video.description}
-          />
+        <CardSection>
+          {opened ? (
+            <video autoPlay src={video.url} />
+          ) : (
+            <Image
+              w={box.width}
+              h={box.height}
+              src={video.cover.videoCoverUrl}
+              alt={video.description}
+            />
+          )}
         </CardSection>
         <Stack
           className="absolute left-0 top-0 h-full w-full"
