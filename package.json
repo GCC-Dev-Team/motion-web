@@ -24,6 +24,7 @@
     "justified-layout": "^4.1.0",
     "ky": "^1.1.3",
     "next": "14.0.1",
+    "next-usequerystate": "^1.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "thumbhash": "^0.1.1",

@@ -1,8 +1,10 @@
 import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query'
 import httpClient from '../httpClient'
 import {
+  type GetVideoListDTO,
   type GetVideoListData,
   type GetVideoDetailData,
+  type GetVideoCategoryListData,
   type GetVideoCommentListData,
   type PostVideoCommentDTO
 } from './type'
@@ -10,13 +12,15 @@ import {
 const VIDEO_API_PATH = 'video'
 
 const videoAPI = {
-  getVideoList: (pageSize: number = 20) =>
+  getVideoList: ({ pageSize = 20, search, categoryId }: GetVideoListDTO = {}) =>
     infiniteQueryOptions({
-      queryKey: [VIDEO_API_PATH],
+      queryKey: [VIDEO_API_PATH, { pageSize, search, categoryId }],
       queryFn: ({ pageParam }) => {
         const searchParams = {
           currentPage: pageParam,
-          pageSize
+          pageSize,
+          ...(search && { search }),
+          ...(categoryId && { categoryId })
         }
 
         return httpClient
@@ -42,6 +46,14 @@ const videoAPI = {
         httpClient
           .get(VIDEO_API_PATH + '/one', { searchParams: { videoId } })
           .json<GetVideoDetailData>()
+    }),
+  getVideoCategoryList: () =>
+    queryOptions({
+      queryKey: [VIDEO_API_PATH, 'category'],
+      queryFn: () =>
+        httpClient
+          .get(VIDEO_API_PATH + `/category`)
+          .json<GetVideoCategoryListData>()
     }),
   getVideoCommentList: (videoId: string) =>
     queryOptions({

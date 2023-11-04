@@ -50,6 +50,9 @@ dependencies:
   next:
     specifier: 14.0.1
     version: 14.0.1(react-dom@18.2.0)(react@18.2.0)
+  next-usequerystate:
+    specifier: ^1.9.2
+    version: 1.9.2(next@14.0.1)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -2054,6 +2057,10 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
+  /mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -2078,6 +2085,15 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-usequerystate@1.9.2(next@14.0.1):
+    resolution: {integrity: sha512-iL2+gRiNedTdAMF9xQcYWJoWBFdfyHr3e4rDz33wcuU29rb1uU6u6UKGtF+GyNMRaAK5sDuBDd6qo5Toc68spw==}
+    peerDependencies:
+      next: ^13.4 || ^14
+    dependencies:
+      mitt: 3.0.1
+      next: 14.0.1(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /next@14.0.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-s4YaLpE4b0gmb3ggtmpmV+wt+lPRuGtANzojMQ2+gmBpgX9w5fTbjsy6dXByBuENsdCX5pukZH/GxdFgO62+pA==}

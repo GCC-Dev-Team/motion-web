@@ -23,6 +23,11 @@ export interface VideoData {
   updateAt: null
 }
 
+export interface VideoCategoryData {
+  categoryId: string
+  categoryName: string
+}
+
 export interface VideoCommentData {
   id: string
   content: string
@@ -34,6 +39,13 @@ export interface VideoCommentData {
   updateAt: string
   liked: boolean
 }
+
+export interface GetVideoListDTO {
+  pageSize?: number
+  search?: string | null
+  categoryId?: string | null
+}
+
 export interface GetVideoListData {
   total: number
   pageSize: number
@@ -43,6 +55,8 @@ export interface GetVideoListData {
 }
 
 export type GetVideoDetailData = VideoData
+
+export type GetVideoCategoryListData = VideoCategoryData[]
 
 export interface GetVideoCommentListData {
   commentCount: number
