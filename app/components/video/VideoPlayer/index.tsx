@@ -28,7 +28,7 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   return (
     <Box className="h-full">
       <BackgroundImage src={placeholderUrl} className="fixed inset-0" />
-      <Center className="h-full">
+      <Center className="h-full" p="lg">
         <MediaPlayer
           title={video.description}
           src={video.url}

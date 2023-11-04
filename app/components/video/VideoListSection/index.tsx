@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import { Box } from '@mantine/core'
 import createJustifiedLayout from 'justified-layout'
 import { type VideoData } from '@/app/apis/videoAPI/type'
@@ -9,7 +9,7 @@ interface VideoListSectionProps {
   width: number
 }
 
-const VideoListSection = ({ videos, width }: VideoListSectionProps) => {
+const VideoListSection = memo(({ videos, width }: VideoListSectionProps) => {
   const { boxes, containerHeight } = useMemo(
     () =>
       createJustifiedLayout(
@@ -26,6 +26,8 @@ const VideoListSection = ({ videos, width }: VideoListSectionProps) => {
       ))}
     </Box>
   )
-}
+})
+
+VideoListSection.displayName = 'VideoListSection'
 
 export default VideoListSection

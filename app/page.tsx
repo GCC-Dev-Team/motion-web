@@ -6,7 +6,7 @@ import VideoList from '@/app/components/video/VideoList'
 
 const HomePage = () => {
   return (
-    <Stack>
+    <Stack className="h-full">
       <VideoCategoryList />
       <VideoList />
     </Stack>

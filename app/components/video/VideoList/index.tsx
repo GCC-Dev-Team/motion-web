@@ -31,7 +31,7 @@ const VideoList = () => {
   }, [entry, isFetching, fetchNextPage])
 
   return (
-    <ScrollArea className="h-full" viewportRef={sizeRef}>
+    <ScrollArea className="flex-1 rounded-lg" viewportRef={sizeRef}>
       <Stack gap="xs">
         {width
           ? pages.map(page => (
