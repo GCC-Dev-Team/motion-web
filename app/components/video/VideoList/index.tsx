@@ -9,6 +9,7 @@ import videoAPI from '@/app/apis/videoAPI'
 import VideoListSection from '../VideoListSection'
 
 const VideoList = () => {
+  const [search] = useQueryState('search')
   const [categoryId] = useQueryState('category')
 
   const {
@@ -16,7 +17,7 @@ const VideoList = () => {
     fetchNextPage,
     isFetching
   } = useSuspenseInfiniteQuery({
-    ...videoAPI.getVideoList({ categoryId })
+    ...videoAPI.getVideoList({ search, categoryId })
   })
 
   const { ref: sizeRef, width } = useElementSize()

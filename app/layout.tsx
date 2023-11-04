@@ -27,7 +27,7 @@ const RootLayout = ({ children }: PropsWithChildren<{}>) => {
         <Providers>
           <Box className="bg-slate-50">
             <Container size="xl">
-              <AppShell header={{ height: 64 }} withBorder={false} padding="md">
+              <AppShell header={{ height: 72 }} withBorder={false} padding="md">
                 <AppHeader />
                 <AppShellMain className="h-[100dvh] pb-0">
                   {children}
