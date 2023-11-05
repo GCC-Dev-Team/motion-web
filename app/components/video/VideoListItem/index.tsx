@@ -42,7 +42,7 @@ const VideoListItem = ({ video, box }: VideoListItemProps) => {
     <Link
       ref={ref}
       className="group absolute"
-      href={`/video/${video.videoId}`}
+      href={`/video?videoId=${video.videoId}`}
       style={{
         width: box.width,
         height: box.height,

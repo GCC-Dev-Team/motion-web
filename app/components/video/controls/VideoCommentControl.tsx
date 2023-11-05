@@ -1,4 +1,3 @@
-import { useParams } from 'next/navigation'
 import {
   Drawer,
   Text,
@@ -15,11 +14,11 @@ import videoAPI from '@/app/apis/videoAPI'
 import VideoCommentList from '../VideoCommentList'
 import VideoCommentForm from '../VideoCommentForm'
 
-const VideoCommentControl = () => {
-  const { videoId } = useParams<{ videoId: string }>()
+interface VideoCommentControlProps {
+  videoId: string
+}
 
-  const { data: video } = useSuspenseQuery(videoAPI.getVideoDetail(videoId))
-
+const VideoCommentControl = ({ videoId }: VideoCommentControlProps) => {
   const {
     data: { commentCount, list: commentList }
   } = useSuspenseQuery(videoAPI.getVideoCommentList(videoId))
@@ -45,13 +44,13 @@ const VideoCommentControl = () => {
         opened={opened}
         onClose={close}>
         <Stack className="h-full" gap={0}>
-          <VideoCommentList videoId={video.videoId} list={commentList} />
+          <VideoCommentList videoId={videoId} list={commentList} />
           <Divider mb="md" />
-          <VideoCommentForm videoId={video.videoId} />
+          <VideoCommentForm videoId={videoId} />
         </Stack>
       </Drawer>
       <Stack align="center" gap="xs">
-        <Indicator inline size={28} label={video.videoCommentCount}>
+        <Indicator inline size={28} label={commentCount}>
           <ActionIcon
             size={48}
             radius="xl"

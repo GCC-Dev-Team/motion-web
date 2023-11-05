@@ -47,6 +47,18 @@ const videoAPI = {
           .get(VIDEO_API_PATH + '/one', { searchParams: { videoId } })
           .json<GetVideoDetailData>()
     }),
+  getPreviousVideoId: (videoId: string) =>
+    queryOptions({
+      queryKey: [VIDEO_API_PATH, 'previous', videoId],
+      queryFn: () =>
+        httpClient.get(VIDEO_API_PATH + `/previous/${videoId}`).json<string>()
+    }),
+  getNextVideoId: (videoId: string) =>
+    queryOptions({
+      queryKey: [VIDEO_API_PATH, 'next', videoId],
+      queryFn: () =>
+        httpClient.get(VIDEO_API_PATH + `/next/${videoId}`).json<string>()
+    }),
   getVideoCategoryList: () =>
     queryOptions({
       queryKey: [VIDEO_API_PATH, 'category'],

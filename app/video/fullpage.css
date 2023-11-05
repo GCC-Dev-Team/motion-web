@@ -1,0 +1,12 @@
+#fullpage {
+  position: fixed !important;
+  inset: 0;
+}
+
+.section {
+  height: 100dvh;
+}
+
+.fp-watermark {
+  display: none;
+}
