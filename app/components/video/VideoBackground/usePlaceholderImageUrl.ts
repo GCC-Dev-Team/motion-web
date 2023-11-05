@@ -14,7 +14,7 @@ const usePlaceholderImageUrl = ({
   const { data } = useQuery({
     queryKey: [imageUrl],
     queryFn: () => loadImage(imageUrl, { crossOrigin: 'anonymous' }),
-    enabled: typeof window !== undefined,
+    enabled: typeof window !== 'undefined',
     select: image => {
       const scale = Math.min(size / image.width, size / image.height)
       const width = Math.floor(image.width * scale)
