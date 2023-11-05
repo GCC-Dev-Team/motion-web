@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { AppShellHeader, SimpleGrid, Title } from '@mantine/core'
 import titleFont from '@/app/shared/titleFont'
 import SearchVideoForm from '@/app/components/video/SearchVideoForm'
+import UserInfo from '@/app/components/user/UserInfo'
 
 const AppHeader = () => {
   return (
@@ -11,6 +12,7 @@ const AppHeader = () => {
           <Title style={titleFont.style}>Motion</Title>
         </Link>
         <SearchVideoForm />
+        <UserInfo />
       </SimpleGrid>
     </AppShellHeader>
   )
