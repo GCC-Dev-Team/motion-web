@@ -1,13 +1,17 @@
 import Link from 'next/link'
-import { AppShellHeader, Title } from '@mantine/core'
+import { AppShellHeader, SimpleGrid, Title } from '@mantine/core'
 import titleFont from '@/app/shared/titleFont'
+import SearchVideoForm from '@/app/components/video/SearchVideoForm'
 
 const AppHeader = () => {
   return (
     <AppShellHeader py="xs" className="[--mantine-color-body:transparent]">
-      <Link href="/">
-        <Title style={titleFont.style}>Motion</Title>
-      </Link>
+      <SimpleGrid className="h-full items-center" cols={3}>
+        <Link href="/">
+          <Title style={titleFont.style}>Motion</Title>
+        </Link>
+        <SearchVideoForm />
+      </SimpleGrid>
     </AppShellHeader>
   )
 }
