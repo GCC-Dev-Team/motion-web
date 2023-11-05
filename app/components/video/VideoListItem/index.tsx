@@ -78,7 +78,7 @@ const VideoListItem = ({ video, box }: VideoListItemProps) => {
               size="compact-md"
               color="gray"
               leftSection={<IconMessages className="h-5 w-5" />}>
-              {video.likeCount}
+              {video.videoCommentCount}
             </Button>
           </Group>
           <Box className="self-start" c="white">

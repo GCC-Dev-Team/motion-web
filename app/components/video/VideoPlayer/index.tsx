@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { Box, Center } from '@mantine/core'
+import { Center, Stack } from '@mantine/core'
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
 import {
   defaultLayoutIcons,
@@ -7,6 +7,7 @@ import {
 } from '@vidstack/react/player/layouts/default'
 import videoAPI from '@/app/apis/videoAPI'
 import VideoCommentControl from '../controls/VideoCommentControl'
+import ShareVideoControl from '../controls/ShareVideoControl'
 
 import '@vidstack/react/player/styles/default/theme.css'
 import '@vidstack/react/player/styles/default/layouts/video.css'
@@ -28,9 +29,10 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
         autoplay>
         <MediaProvider />
         <DefaultVideoLayout icons={defaultLayoutIcons}>
-          <Box className="absolute bottom-1/3 right-6">
+          <Stack className="absolute bottom-1/4 right-6">
             <VideoCommentControl videoId={videoId} />
-          </Box>
+            <ShareVideoControl />
+          </Stack>
         </DefaultVideoLayout>
       </MediaPlayer>
     </Center>
