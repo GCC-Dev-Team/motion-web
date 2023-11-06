@@ -10,7 +10,8 @@ import {
   ActionIcon,
   Card,
   CardSection,
-  Button
+  Button,
+  Tooltip
 } from '@mantine/core'
 import { IconHeart, IconMessages } from '@tabler/icons-react'
 import { useDisclosure, useHover, useTimeout } from '@mantine/hooks'
@@ -82,7 +83,11 @@ const VideoListItem = ({ video, box }: VideoListItemProps) => {
             </Button>
           </Group>
           <Box className="self-start" c="white">
-            <Title order={2}>{video.description}</Title>
+            <Tooltip label={video.description} position="bottom">
+              <Title order={3} className="line-clamp-2">
+                {video.description}
+              </Title>
+            </Tooltip>
             <Group gap="xs">
               <Text>@{video.creator.userName}</Text>
               <Text>{dayjs(video.createAt).from(dayjs())}</Text>
