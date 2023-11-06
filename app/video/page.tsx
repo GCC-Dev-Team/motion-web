@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Box, rem } from '@mantine/core'
-import Fullpage, { type fullpageOptions } from '@fullpage/react-fullpage'
+import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react'
+import { Mousewheel, Keyboard } from 'swiper/modules'
 import { useQueryState, parseAsString } from 'next-usequerystate'
 import { useQueryClient, useSuspenseQueries } from '@tanstack/react-query'
 import videoAPI from '@/app/apis/videoAPI'
 import VideoBackground from '@/app/components/video/VideoBackground'
 import VideoPlayer from '@/app/components/video/VideoPlayer'
 
-import './fullpage.css'
+import 'swiper/css'
 
 const VideoDetailPage = () => {
   const searchParams = useSearchParams()
@@ -19,6 +19,8 @@ const VideoDetailPage = () => {
     'videoId',
     parseAsString.withDefault(searchParams.get('videoId')!)
   )
+
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null)
 
   const queryClient = useQueryClient()
 
@@ -29,42 +31,49 @@ const VideoDetailPage = () => {
     ]
   })
 
-  const handleLeave: fullpageOptions['onLeave'] = (
-    _origin,
-    _destination,
-    direction
-  ) => {
-    setVideoId(
-      direction === 'up' ? videoContextIds[0].data : videoContextIds[1].data
-    )
-  }
-
   useEffect(() => {
     videoContextIds.forEach(({ data }) => {
       queryClient.prefetchQuery(videoAPI.getVideoDetail(data))
     })
   }, [queryClient, videoContextIds])
 
+  useEffect(() => {
+    if (swiper) {
+      const handlePrevTransitionStart = () => {
+        setVideoId(videoContextIds[0].data)
+      }
+
+      const handleNextTransitionStart = () => {
+        setVideoId(videoContextIds[1].data)
+      }
+
+      swiper.on('slidePrevTransitionStart', handlePrevTransitionStart)
+      swiper.on('slideNextTransitionStart', handleNextTransitionStart)
+      return () => {
+        swiper.off('slidePrevTransitionStart', handlePrevTransitionStart)
+        swiper.off('slidePrevTransitionStart', handlePrevTransitionStart)
+      }
+    }
+  }, [swiper, setVideoId, videoContextIds])
+
   return (
     <>
       <VideoBackground videoId={videoId} />
-      <Fullpage
-        credits={{}}
-        continuousVertical
-        paddingTop={rem(80)}
-        beforeLeave={() => {}}
-        onLeave={handleLeave}
-        render={() => (
-          <Fullpage.Wrapper>
-            <Box className="section">
-              <VideoPlayer videoId={videoId} />
-            </Box>
-            <Box className="section">
-              <VideoPlayer videoId={videoId} />
-            </Box>
-          </Fullpage.Wrapper>
-        )}
-      />
+      <Swiper
+        className="h-full"
+        direction="vertical"
+        loop
+        keyboard
+        mousewheel
+        modules={[Keyboard, Mousewheel]}
+        onSwiper={setSwiper}>
+        <SwiperSlide>
+          {({ isActive }) => isActive && <VideoPlayer videoId={videoId} />}
+        </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => isActive && <VideoPlayer videoId={videoId} />}
+        </SwiperSlide>
+      </Swiper>
     </>
   )
 
