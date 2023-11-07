@@ -1,20 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Motion 短视频 App
+
+访问 [ https://nanfangshaonian.feishu.cn/file/VTfDbgp2goPulgxvIF0c31eUnnb ](https://nanfangshaonian.feishu.cn/file/VTfDbgp2goPulgxvIF0c31eUnnb) 查看演示视频.
+
+访问 [ http://159.75.156.115 ](http://159.75.156.115) 查看演示应用.
+
+![image](https://github.com/motion-app-dev/motion-web/assets/61679509/1561fff5-124c-4853-84dc-68d399d27acf)
 
 ## Getting Started
+前置要求:
+- 请确保您的计算机上已经安装了 [Node.js](https://nodejs.org/)  和 [pnpm](https://pnpm.io/)。
 
-First, run the development server:
+运行下方命令启动开发服务器：
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+在浏览器中打开 [http://localhost:3000](http://localhost:3000) 来查看结果。
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
