@@ -65,6 +65,7 @@ const VideoDetailPage = () => {
         loop
         keyboard
         mousewheel
+        allowTouchMove={false}
         modules={[Keyboard, Mousewheel]}
         onSwiper={setSwiper}>
         <SwiperSlide>
