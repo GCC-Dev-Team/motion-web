@@ -1,4 +1,4 @@
-# Motion 短视频 App
+## Motion 短视频 App
 
 访问 [ https://nanfangshaonian.feishu.cn/file/VTfDbgp2goPulgxvIF0c31eUnnb ](https://nanfangshaonian.feishu.cn/file/VTfDbgp2goPulgxvIF0c31eUnnb) 查看演示视频.
 
@@ -21,6 +21,14 @@ pnpm run dev
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## 技术架构
+- 开发框架：Next.js
+- 网络请求：ky
+- 请求状态管理：Tanstack Query
+- 组件库：Mantine
+- 瀑布流布局：justified-layout
+- 状态管理：zustand
 
 ## Learn More
 
